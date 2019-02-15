@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/darts/CardWidget.dart';
+import 'package:flutter_app_demo/darts/CustomScrollViewWidget.dart';
 import 'package:flutter_app_demo/darts/FirstFlutterPageWidget.dart';
 import 'package:flutter_app_demo/darts/ListPageWidget.dart';
 import 'package:flutter_app_demo/darts/MulTypeListPageWidget.dart';
@@ -77,134 +78,114 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.push<String>(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) =>
-                                  new FirstFlutterPageWidget("主页面传递过来的参数")))
-                      .then((onValue) {
-                    Fluttertoast.showToast(msg: onValue);
-                    print("开始更新页面数据 --->");
-                    setState(() {});
-                  });
-                },
-                child: new Text("开启新页面")),
-            FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.push<String>(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new ListPageWidget(2)));
-                },
-                child: new Text("列表页面")),
-            FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.push<String>(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new MulTypeListPageWidget()));
-                },
-                child: new Text("分type列表页面")),
-            FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.push<String>(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new CardWidget()));
-                },
-                child: new Text("卡片的使用")),
 
-            FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.push<String>(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new CardWidget()));
-                },
-                child: new Text("滑动ScrollView 的使用")),
+      body: CustomScrollView(
+        shrinkWrap: true,
+        slivers: <Widget>[
+          new SliverPadding(padding: const EdgeInsets.all(20.0),
+            sliver: new SliverList(delegate: new SliverChildListDelegate(<Widget>[
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.push<String>(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) =>
+                            new FirstFlutterPageWidget("主页面传递过来的参数")))
+                        .then((onValue) {
+                      Fluttertoast.showToast(msg: onValue);
+                      print("开始更新页面数据 --->");
+                      setState(() {});
+                    });
+                  },
+                  child: new Text("开启新页面")),
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.push<String>(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new ListPageWidget(2)));
+                  },
+                  child: new Text("列表页面")),
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.push<String>(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new MulTypeListPageWidget()));
+                  },
+                  child: new Text("分type列表页面")),
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.push<String>(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new CardWidget()));
+                  },
+                  child: new Text("卡片的使用")),
 
-            FlatButton(
-                color: Colors.blue,
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.push<String>(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new CustomScrollViewWidget()));
+                  },
+                  child: new Text("滑动ScrollView 的使用")),
+
+              FlatButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    print("点击按钮");
+                  },
+                  child: new Text("按钮")),
+              FlatButton.icon(
+                  onPressed: () {
+                    print("flatButton icon 被点击");
+                  },
+                  icon: Icon(
+                    Icons.add_circle,
+                    color: Colors.brown,
+                  ),
+                  label: Text("带icon的button")),
+              RaisedButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    print("raisedButton 被点击");
+                  },
+                  child: new Text("raise按钮")),
+              RaisedButton.icon(
+                  onPressed: () {
+                    print("raisedButton 被点击");
+                  },
+                  icon: Icon(
+                    Icons.add_circle,
+                    color: Colors.brown,
+                  ),
+                  label: Text("带icon的button")),
+              IconButton(
+                icon: Icon(Icons.volume_up),
+                tooltip: "increase  10%",
                 onPressed: () {
-                  print("点击按钮");
+                  print("icon 被点击");
                 },
-                child: new Text("按钮")),
-            FlatButton.icon(
-                onPressed: () {
-                  print("flatButton icon 被点击");
-                },
-                icon: Icon(
-                  Icons.add_circle,
+              ),
+              FlatButton(
                   color: Colors.brown,
-                ),
-                label: Text("带icon的button")),
-            RaisedButton(
-                color: Colors.blue,
-                onPressed: () {
-                  print("raisedButton 被点击");
-                },
-                child: new Text("raise按钮")),
-            RaisedButton.icon(
-                onPressed: () {
-                  print("raisedButton 被点击");
-                },
-                icon: Icon(
-                  Icons.add_circle,
-                  color: Colors.brown,
-                ),
-                label: Text("带icon的button")),
-            IconButton(
-              icon: Icon(Icons.volume_up),
-              tooltip: "increase  10%",
-              onPressed: () {
-                print("icon 被点击");
-              },
-            ),
-            FlatButton(
-                color: Colors.brown,
-                onPressed: () {
-                  Navigator.push<String>(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new PoupMenuButtonDemo()));
-                },
-                child: Text("popupMenu的使用")),
-
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+                  onPressed: () {
+                    Navigator.push<String>(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new PoupMenuButtonDemo()));
+                  },
+                  child: Text("popupMenu的使用")),
+            ])),)
+        ],
+      )
     );
   }
 }

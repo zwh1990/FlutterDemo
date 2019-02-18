@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/biz/ListViewBean.dart';
@@ -17,6 +18,20 @@ class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
     for (int i = 0; i < 30; i++) {
       list.add(new ListViewBean("张三", "15", "男"));
     }
+  }
+
+  void _pullData() async {
+    Dio dio = new Dio();
+    Response response = await dio.post("https://www.easy-mock.com/"
+        "mock/5c6a7acd5c189d024fa5ec6e/getList");
+    print(response.data);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pullData();
   }
 
   Widget listViewLayoutSeparated(List<ListViewBean> list) {
@@ -82,15 +97,15 @@ class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
     );
   }
 
-  Future<void> _onRefresh() async{
-    await Future.delayed(Duration(seconds:2),(){
-        print("开始刷新");
-        setState(() {
-          list.clear();
-          for (int i = 0; i < 15; i++) {
-            list.add(new ListViewBean("lisi", "15", "男"));
-          }
-        });
+  Future<void> _onRefresh() async {
+    await Future.delayed(Duration(seconds: 2), () {
+      print("开始刷新");
+      setState(() {
+        list.clear();
+        for (int i = 0; i < 15; i++) {
+          list.add(new ListViewBean("lisi", "15", "男"));
+        }
+      });
     });
   }
 
@@ -110,6 +125,4 @@ class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
 //      body: listViewLayoutSeparated(list),
     );
   }
-
-
 }

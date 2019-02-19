@@ -1,44 +1,19 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_app_demo/http/UrlManager.dart';
 
-class HttpManager extends StatefulWidget {
-  @override
-  HttpManagerState createState() => new HttpManagerState();
-}
+class HttpManager {
+  static const CONTENT_TYPE_JSON = "application/json";
+  static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
-class HttpManagerState extends State<HttpManager> {
+  Options options;
 
-
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(''),
-      ),
-    );
-  }
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  HttpManager() {
+    options = new Options(
+        baseUrl: UrlManager.test, connectTimeout: 5000, receiveTimeout: 3000);
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
 
-  @override
-  void didUpdateWidget(HttpManager oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-  }
 
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
+
+
 }

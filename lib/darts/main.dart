@@ -7,6 +7,7 @@ import 'package:flutter_app_demo/darts/ListPageWidget.dart';
 import 'package:flutter_app_demo/darts/MulTypeListPageWidget.dart';
 import 'package:flutter_app_demo/darts/PickTimeWidget.dart';
 import 'package:flutter_app_demo/darts/PoupMenuButtonDemo.dart';
+import 'package:flutter_app_demo/darts/TableWidget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
@@ -160,6 +161,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               new ChipWidget()));
                     },
                     child: new Text("Chip的使用")),
+
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) =>
+                              new TableWidget()));
+                    },
+                    child: new Text("Table的使用")),
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {

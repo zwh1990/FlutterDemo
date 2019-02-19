@@ -1,10 +1,8 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/biz/JsonListBean.dart';
 import 'package:flutter_app_demo/biz/ListViewBean.dart';
-import 'package:http/http.dart' as client;
 
 /**
  * 分类型的listView
@@ -15,42 +13,40 @@ class MulTypeListPageWidget extends StatefulWidget {
 }
 
 class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
-
   List<ListViewBean> list = new List();
   var currentPage = 1;
   ScrollController _controller = new ScrollController();
 
+  _MulTypeListPageWidget() {
+    _controller.addListener(() {
+      var maxScroll = _controller.position.maxScrollExtent;
+      var pixels = _controller.position.pixels;
 
-  _MulTypeListPageWidget(){
-    _controller.addListener((){
-        var maxScroll = _controller.position.maxScrollExtent;
-        var pixels = _controller.position.pixels;
-
-        if(maxScroll == pixels && list.length <100){
-          setState(() {
-            _pullData();
-          });
-        }
+      if (maxScroll == pixels && list.length < 100) {
+        setState(() {
+          _pullData();
+        });
+      }
     });
   }
 
   void _pullData() async {
     var api = 'https://www.easy-mock.com/mock/5c6a7acd5c189d024fa5ec6e/getList';
-    try {
-      final response = await client.post(api);
-      if (response.statusCode == 200) {
-        print(response.body);
-        var data = JsonListBean.fromJson(json.decode(response.body));
-        setState(() {
-          for (var value in data.result) {
-            list.add(ListViewBean.fromJson(value));
-          }
-        });
-        print(ListViewBean.fromJson(data.result[1]).name);
+
+    Dio dio = new Dio();
+    print("开始请求--->");
+    Response response=await dio.post(api);
+    print(response.data);
+    var data = JsonListBean.fromJson(response.data);
+    setState(() {
+      for (var value in data.result) {
+        list.add(ListViewBean.fromJson(value));
       }
-    } catch (e) {
-      print(e);
-    }
+    });
+
+    //获取数据
+
+
   }
 
   @override
@@ -145,8 +141,7 @@ class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
       ),
 
       body: RefreshIndicator(
-          child: listViewLayoutSeparated(list),
-          onRefresh: _onRefresh),
+          child: listViewLayoutSeparated(list), onRefresh: _onRefresh),
 
 //      body: listViewLayoutSeparated(list),
     );

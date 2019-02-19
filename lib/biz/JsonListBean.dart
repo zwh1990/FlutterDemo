@@ -1,6 +1,12 @@
+
+
 class JsonListBean {
-  final List<String> streets;
+  String message;
+  String code;
+  var result;
 
-  JsonListBean(this.streets);
-
+  JsonListBean.fromJson(Map<String, dynamic> map)
+      : message = map['message'],
+        code = map['code'],
+        result = map['result'];
 }

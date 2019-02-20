@@ -1,16 +1,26 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/darts/CameraAppA.dart';
+import 'package:flutter_app_demo/darts/CameraAppB.dart';
 import 'package:flutter_app_demo/darts/CardWidget.dart';
 import 'package:flutter_app_demo/darts/ChipWidget.dart';
 import 'package:flutter_app_demo/darts/CustomScrollViewWidget.dart';
 import 'package:flutter_app_demo/darts/FirstFlutterPageWidget.dart';
+import 'package:flutter_app_demo/darts/FiveStartWidget.dart';
+import 'package:flutter_app_demo/darts/FlowDelegateWidget.dart';
 import 'package:flutter_app_demo/darts/ListPageWidget.dart';
+import 'package:flutter_app_demo/darts/MapGpsLocationWidget.dart';
 import 'package:flutter_app_demo/darts/MulTypeListPageWidget.dart';
 import 'package:flutter_app_demo/darts/PickTimeWidget.dart';
 import 'package:flutter_app_demo/darts/PoupMenuButtonDemo.dart';
 import 'package:flutter_app_demo/darts/TableWidget.dart';
+import 'package:flutter_app_demo/darts/WrapWidget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  cameras = await availableCameras();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -147,8 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push<String>(
                           context,
                           new MaterialPageRoute(
-                              builder: (context) =>
-                              new PickTimeWidget()));
+                              builder: (context) => new PickTimeWidget()));
                     },
                     child: new Text("时间pick选择")),
                 FlatButton(
@@ -157,11 +166,63 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push<String>(
                           context,
                           new MaterialPageRoute(
-                              builder: (context) =>
-                              new ChipWidget()));
+                              builder: (context) => new ChipWidget()));
                     },
                     child: new Text("Chip的使用")),
-
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new TableWidget()));
+                    },
+                    child: new Text("Table的使用")),
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new FlowDelegateWidget()));
+                    },
+                    child: new Text("FlowDelegateWidget的使用")),
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new WrapWidget()));
+                    },
+                    child: new Text("wrap的使用")),
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new FiveStartWidget()));
+                    },
+                    child: new Text("绘制五角星")),
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new CameraAppA()));
+                    },
+                    child: new Text("相机A")),
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new CameraAppB()));
+                    },
+                    child: new Text("相机B")),
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {
@@ -169,9 +230,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           context,
                           new MaterialPageRoute(
                               builder: (context) =>
-                              new TableWidget()));
+                                  new MapGpsLocationWidget()));
                     },
-                    child: new Text("Table的使用")),
+                    child: new Text("Gps地图定位")),
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {
@@ -187,7 +248,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.brown,
                     ),
                     label: Text("带icon的button")),
-
                 RaisedButton(
                     color: Colors.blue,
                     onPressed: () {

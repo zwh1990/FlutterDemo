@@ -252,6 +252,10 @@ class _CameraAppBState extends State<CameraAppB> {
     });
   }
 
+  void takePhoto() {
+
+  }
+
   Future<String> startVideoRecording() async {
     if (!controller.value.isInitialized) {
       showInSnackBar('Error: select a camera first.');

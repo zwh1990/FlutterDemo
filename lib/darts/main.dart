@@ -5,6 +5,7 @@ import 'package:flutter_app_demo/darts/CameraAppB.dart';
 import 'package:flutter_app_demo/darts/CardWidget.dart';
 import 'package:flutter_app_demo/darts/ChipWidget.dart';
 import 'package:flutter_app_demo/darts/CustomScrollViewWidget.dart';
+import 'package:flutter_app_demo/darts/ExpandedWidget.dart';
 import 'package:flutter_app_demo/darts/FirstFlutterPageWidget.dart';
 import 'package:flutter_app_demo/darts/FiveStartWidget.dart';
 import 'package:flutter_app_demo/darts/FlowDelegateWidget.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -223,6 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               builder: (context) => new CameraAppB()));
                     },
                     child: new Text("相机B")),
+
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {
@@ -233,6 +236,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                   new MapGpsLocationWidget()));
                     },
                     child: new Text("Gps地图定位")),
+
+                FlatButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) =>
+                              new ExpandedWidget()));
+                    },
+                    child: new Text("Expanded的使用")),
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {

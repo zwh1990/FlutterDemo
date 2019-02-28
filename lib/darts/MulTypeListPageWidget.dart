@@ -35,7 +35,7 @@ class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
 
     Dio dio = new Dio();
     print("开始请求--->");
-    Response response=await dio.post(api);
+    Response response = await dio.post(api);
     print(response.data);
     var data = JsonListBean.fromJson(response.data);
     setState(() {
@@ -45,8 +45,6 @@ class _MulTypeListPageWidget extends State<MulTypeListPageWidget> {
     });
 
     //获取数据
-
-
   }
 
   @override

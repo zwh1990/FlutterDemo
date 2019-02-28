@@ -9,6 +9,7 @@ import 'package:flutter_app_demo/darts/ExpandedWidget.dart';
 import 'package:flutter_app_demo/darts/FirstFlutterPageWidget.dart';
 import 'package:flutter_app_demo/darts/FiveStartWidget.dart';
 import 'package:flutter_app_demo/darts/FlowDelegateWidget.dart';
+import 'package:flutter_app_demo/darts/InputWidget.dart';
 import 'package:flutter_app_demo/darts/ListPageWidget.dart';
 import 'package:flutter_app_demo/darts/MapGpsLocationWidget.dart';
 import 'package:flutter_app_demo/darts/MulTypeListPageWidget.dart';
@@ -225,7 +226,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               builder: (context) => new CameraAppB()));
                     },
                     child: new Text("相机B")),
-
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {
@@ -236,23 +236,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                   new MapGpsLocationWidget()));
                     },
                     child: new Text("Gps地图定位")),
-
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {
                       Navigator.push<String>(
                           context,
                           new MaterialPageRoute(
-                              builder: (context) =>
-                              new ExpandedWidget()));
+                              builder: (context) => new ExpandedWidget()));
                     },
                     child: new Text("Expanded的使用")),
                 FlatButton(
                     color: Colors.blue,
                     onPressed: () {
-                      print("点击按钮");
+                      Navigator.push<String>(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new InputWidget()));
                     },
-                    child: new Text("按钮")),
+                    child: new Text("自定义输入布局")),
                 FlatButton.icon(
                     onPressed: () {
                       print("flatButton icon 被点击");
